@@ -104,11 +104,11 @@
                     </div>
                 </form>
 
-                <p class="text-center">
+                {{-- <p class="text-center">
                     <span>Belum memiliki akun ?</span>
                     <a href="{{ route('register') }}">
                         <span>Buat Akun</span>
-                    </a>
+                    </a> --}}
                 </p>
             </form>
         </div>

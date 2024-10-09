@@ -18,10 +18,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.index');
+});
+Route::get('/invoice', function () {
+    return view('pages.invoice');
+});
+Route::get('/pengajuan_pupuk', function () {
+    return view('pages.pengajuan');
 });
 
-Auth::routes();
+Auth::routes(['register' => false, 'reset' => false]);
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
