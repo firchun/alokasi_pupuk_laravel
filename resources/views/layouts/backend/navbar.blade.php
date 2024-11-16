@@ -14,7 +14,7 @@
                 <input type="text" class="form-control border-0 shadow-none"
                     placeholder="Search{{ asset('backend_theme/') }}."
                     aria-label="Search{{ asset('backend_theme/') }}." /> --}}
-                <a href="{{ url('/') }}" class="btn btn-outline-primary">Homepage</a>
+                <a href="{{ url('/') }}" class="btn btn-outline-success">Homepage</a>
             </div>
         </div>
         <!-- /Search -->
@@ -27,7 +27,7 @@
                     <div class="avatar avatar-online">
                         @if (Auth::user()->avatar == null || Auth::user()->name == '')
                             <span
-                                class="avatar-initial rounded-circle bg-label-primary">{{ substr(Auth::user()->name, 0, 2) }}</span>
+                                class="avatar-initial rounded-circle bg-label-success">{{ substr(Auth::user()->name, 0, 2) }}</span>
                         @else
                             <img src="{{ Auth::user()->avatar != null || Auth::user()->avatar != '' ? url(Storage::url(Auth::user()->avatar)) : asset('/img/user.png') }}"
                                 alt class="w-px-40 h-40 rounded-circle" style="object-fit: cover;" />
@@ -42,7 +42,7 @@
                                     <div class="avatar avatar-online">
                                         @if (Auth::user()->name == null || Auth::user()->name == '')
                                             <span
-                                                class="avatar-initial rounded-circle bg-label-primary">{{ substr(Auth::user()->name, 0, 2) }}
+                                                class="avatar-initial rounded-circle bg-label-success">{{ substr(Auth::user()->name, 0, 2) }}
                                             </span>
                                         @else
                                             <img src="{{ Auth::user()->avatar != null || Auth::user()->avatar != '' ? url(Storage::url(Auth::user()->avatar)) : asset('/img/user.png') }}"

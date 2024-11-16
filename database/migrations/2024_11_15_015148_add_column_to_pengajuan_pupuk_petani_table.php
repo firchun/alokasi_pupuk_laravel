@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['Gapoktan', 'Poktan', 'PPL', 'Distributor'])->default('Distributor')->after('email');
+        Schema::table('pengajuan_pupuk_petani', function (Blueprint $table) {
+            $table->string('invoice')->after('id_jenis_pupuk')->unique();
+            $table->boolean('diambil')->default(0)->after('diterima');
         });
     }
 
@@ -25,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('pengajuan_pupuk_petani', function (Blueprint $table) {
             //
         });
     }

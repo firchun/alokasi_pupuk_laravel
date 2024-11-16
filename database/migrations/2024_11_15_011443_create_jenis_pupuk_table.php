@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['Gapoktan', 'Poktan', 'PPL', 'Distributor'])->default('Distributor')->after('email');
+        Schema::create('jenis_pupuk', function (Blueprint $table) {
+            $table->id();
+            $table->string('jenis_pupuk');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('jenis_pupuk');
     }
 };

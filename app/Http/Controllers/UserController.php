@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KelompokTani;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,14 +18,32 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Users',
-            'users' => User::all()
+            'title' => 'GAPOKTAN',
+            'role' => 'Gapoktan'
         ];
         return view('admin.users.index', $data);
     }
-    public function getUsersDataTable()
+    public function poktan()
     {
-        $users = User::select(['id', 'name', 'email', 'created_at', 'updated_at', 'role', 'avatar'])->orderByDesc('id');
+        $data = [
+            'title' => 'Kelompok Tani',
+            'role' => 'Poktan'
+        ];
+        return view('admin.users.index', $data);
+    }
+    public function distributor()
+    {
+        $data = [
+            'title' => 'Distributor',
+            'role' => 'Distributor'
+        ];
+        return view('admin.users.index', $data);
+    }
+    public function getUsersDataTable($role)
+    {
+        $query = User::orderByDesc('id');
+
+        $users = $query->where('role', $role);
 
         return Datatables::of($users)
             ->addColumn('avatar', function ($user) {
@@ -34,10 +53,13 @@ class UserController extends Controller
                 return view('admin.users.components.actions', compact('user'));
             })
             ->addColumn('role', function ($user) {
-                return '<span class="badge bg-label-primary">' . $user->role . '</span>';
+                return '<span class="badge bg-label-success">' . $user->role . '</span>';
             })
-
-            ->rawColumns(['action', 'role', 'avatar'])
+            ->addColumn('anggota', function ($user) {
+                $anggota = KelompokTani::where('id_poktan', $user->id)->count();
+                return '<span class="badge bg-warning">' . $anggota . ' Anggota</span>';
+            })
+            ->rawColumns(['action', 'role', 'avatar', 'anggota'])
             ->make(true);
     }
     public function store(Request $request)

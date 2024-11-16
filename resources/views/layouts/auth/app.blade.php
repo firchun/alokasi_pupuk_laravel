@@ -45,6 +45,25 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('backend_theme/') }}/assets/js/config.js"></script>
+    <style>
+        body {
+            position: relative;
+            margin: 0;
+        }
+
+        body::before {
+            content: "";
+            background: url('{{ asset('img/background-blur.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.8;
+            z-index: -1;
+        }
+    </style>
 </head>
 
 <body>

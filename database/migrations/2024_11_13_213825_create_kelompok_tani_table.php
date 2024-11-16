@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['Gapoktan', 'Poktan', 'PPL', 'Distributor'])->default('Distributor')->after('email');
+        Schema::create('kelompok_tani', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_poktan')->constrained('users')->onDelete('cascade');
+            $table->string('nama');
+            $table->string('no_hp');
+            $table->string('alamat');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('kelompok_tani');
     }
 };

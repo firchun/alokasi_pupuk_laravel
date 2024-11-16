@@ -11,13 +11,15 @@
                     </div>
                     <div class="dt-action-buttons text-end pt-3 pt-md-0">
                         <div class="dt-buttons btn-group flex-wrap">
-                            <button class="btn btn-secondary create-new btn-primary" type="button" class="btn btn-primary"
-                                data-bs-toggle="modal" data-bs-target="#create">
-                                <span>
-                                    <i class="bx bx-plus me-sm-1"> </i>
-                                    <span class="d-none d-sm-inline-block">Tambah Data</span>
-                                </span>
-                            </button>
+                            @if ($role != 'Distributor')
+                                <button class="btn btn-secondary create-new btn-success" type="button"
+                                    class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
+                                    <span>
+                                        <i class="bx bx-plus me-sm-1"> </i>
+                                        <span class="d-none d-sm-inline-block">Tambah Data</span>
+                                    </span>
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -30,6 +32,9 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                @if ($role == 'Poktan')
+                                    <th>Anggota</th>
+                                @endif
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,6 +46,9 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                @if ($role == 'Poktan')
+                                    <th>Anggota</th>
+                                @endif
                                 <th>Action</th>
                             </tr>
                         </tfoot>

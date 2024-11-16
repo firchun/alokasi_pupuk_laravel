@@ -1,38 +1,20 @@
 @push('js')
     <script>
         $(function() {
-            $('#datatable-users').DataTable({
+            $('#datatable-customers').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: '{{ url('users-datatable', $role) }}',
+                ajax: '{{ url('jenis-pupuk-datatable') }}',
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'avatar',
-                        name: 'avatar'
+                        data: 'jenis_pupuk',
+                        name: 'jenis_pupuk'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'email',
-                        name: 'email'
-                    },
-
-                    {
-                        data: 'role',
-                        name: 'role'
-                    },
-                    @if ($role == 'Poktan')
-                        {
-                            data: 'anggota',
-                            name: 'anggota'
-                        },
-                    @endif {
                         data: 'action',
                         name: 'action'
                     }
@@ -41,28 +23,29 @@
             $('.create-new').click(function() {
                 $('#create').modal('show');
             });
-            window.editUser = function(id) {
+            $('.refresh').click(function() {
+                $('#datatable-customers').DataTable().ajax.reload();
+            });
+            window.editCustomer = function(id) {
                 $.ajax({
                     type: 'GET',
-                    url: '/users/edit/' + id,
+                    url: '/jenis-pupuk/edit/' + id,
                     success: function(response) {
-                        $('#UsersModalLabel').text('Edit User');
-                        $('#formUserId').val(response.id);
-                        $('#formUserName').val(response.name);
-                        $('#formUserEmail').val(response.email);
-                        $('#UsersModal').modal('show');
+                        $('#formCustomerId').val(response.id);
+                        $('#JeniPupuk').val(response.jenis_pupuk);
+                        $('#customersModal').modal('show');
                     },
                     error: function(xhr) {
                         alert('Terjadi kesalahan: ' + xhr.responseText);
                     }
                 });
             };
-            $('#saveUserBtn').click(function() {
+            $('#saveCustomerBtn').click(function() {
                 var formData = $('#userForm').serialize();
 
                 $.ajax({
                     type: 'POST',
-                    url: '/users/store',
+                    url: '/jenis-pupuk/store',
                     data: formData,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -70,29 +53,28 @@
                     success: function(response) {
                         alert(response.message);
                         // Refresh DataTable setelah menyimpan perubahan
-                        $('#datatable-users').DataTable().ajax.reload();
-                        $('#UsersModal').modal('hide');
+                        $('#datatable-customers').DataTable().ajax.reload();
+                        $('#customersModal').modal('hide');
                     },
                     error: function(xhr) {
                         alert('Terjadi kesalahan: ' + xhr.responseText);
                     }
                 });
             });
-            $('#createUserBtn').click(function() {
+            $('#createCustomerBtn').click(function() {
                 var formData = $('#createUserForm').serialize();
 
                 $.ajax({
                     type: 'POST',
-                    url: '/users/store',
+                    url: '/jenis-pupuk/store',
                     data: formData,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                         alert(response.message);
-                        $('#userssModalLabel').text('Edit User');
-                        $('#formUserName').val('');
-                        $('#datatable-users').DataTable().ajax.reload();
+                        $('#createJenisPupuk').val('');
+                        $('#datatable-customers').DataTable().ajax.reload();
                         $('#create').modal('hide');
                     },
                     error: function(xhr) {
@@ -100,31 +82,23 @@
                     }
                 });
             });
-
-            window.deleteUser = function(id) {
-                if (confirm('Apakah Anda yakin ingin menghapus pengguna ini?')) {
+            window.deleteCustomers = function(id) {
+                if (confirm('Apakah Anda yakin ingin menghapus jenis ini?')) {
                     $.ajax({
                         type: 'DELETE',
-                        url: '/users/delete/' + id,
+                        url: '/jenis-pupuk/delete/' + id,
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
-                            alert(response.message);
-                            // Refresh DataTable setelah menghapus pengguna
-                            $('#datatable-users').DataTable().ajax.reload();
+                            // alert(response.message);
+                            $('#datatable-customers').DataTable().ajax.reload();
                         },
                         error: function(xhr) {
                             alert('Terjadi kesalahan: ' + xhr.responseText);
                         }
                     });
                 }
-            };
-            window.anggotaUser = function(id) {
-                const baseUrl = "{{ url('/kelompok-tani/') }}";
-                const redirectUrl = `${baseUrl}/${id}`;
-
-                window.location.href = redirectUrl;
             };
         });
     </script>
