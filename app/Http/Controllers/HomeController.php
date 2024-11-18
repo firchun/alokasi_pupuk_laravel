@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\PengajuanPupukPetani;
 
 class HomeController extends Controller
 {
@@ -28,7 +30,6 @@ class HomeController extends Controller
         $data = [
             'title' => 'Dashboard',
             'users' => User::count(),
-            'customers' => Customer::count()
         ];
         return view('admin.dashboard', $data);
     }

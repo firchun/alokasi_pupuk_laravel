@@ -28,7 +28,7 @@
             @endif
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-8">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('/ajukan') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card border-success">
                             <div class="card-header bg-success text-white">

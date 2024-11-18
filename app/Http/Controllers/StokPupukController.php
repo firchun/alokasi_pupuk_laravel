@@ -32,11 +32,15 @@ class StokPupukController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_pupuk' => 'required|string|max:255',
+            'id_distributor' => 'required|string|max:255',
+            'id_jenis_pupuk' => 'required|string|max:255',
+            'jumlah_pengajuan' => 'required|string|max:255',
         ]);
 
         $customerData = [
-            'jenis_pupuk' => $request->input('jenis_pupuk'),
+            'id_distributor' => $request->input('id_distributor'),
+            'id_jenis_pupuk' => $request->input('id_jenis_pupuk'),
+            'jumlah_pengajuan' => $request->input('jumlah_pengajuan'),
         ];
 
         if ($request->filled('id')) {
@@ -46,10 +50,10 @@ class StokPupukController extends Controller
             }
 
             $customer->update($customerData);
-            $message = 'jenis updated successfully';
+            $message = 'pengajuan updated successfully';
         } else {
             StokPupuk::create($customerData);
-            $message = 'jenis created successfully';
+            $message = 'pengajuan created successfully';
         }
 
         return response()->json(['message' => $message]);
@@ -75,5 +79,21 @@ class StokPupukController extends Controller
         }
 
         return response()->json($customer);
+    }
+    public function terima(Request $request)
+    {
+        $data = StokPupuk::find($request->input('id'));
+        $data->diterima = 1;
+        $data->jumlah_diterima = $request->input('jumlah_diterima');
+        $data->save();
+
+        return response()->json(['message' => 'Berhasil menerima stok'], 404);
+    }
+    public function tolak(Request $request, $id)
+    {
+        $data = StokPupuk::find($id);
+        $data->diterima = 2;
+        $data->save();
+        return response()->json(['message' => 'Berhasil menolak stok']);
     }
 }

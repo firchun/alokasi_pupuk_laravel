@@ -14,14 +14,7 @@
                             <button class="btn btn-secondary refresh btn-default" type="button">
                                 <span>
                                     <i class="bx bx-sync me-sm-1"> </i>
-                                    <span class="d-none d-sm-inline-block"></span>
-                                </span>
-                            </button>
-                            <button class="btn btn-secondary create-new btn-success" type="button" data-bs-toggle="modal"
-                                data-bs-target="#create">
-                                <span>
-                                    <i class="bx bx-plus me-sm-1"> </i>
-                                    <span class="d-none d-sm-inline-block">Tambah Anggota</span>
+                                    <span class="d-none d-sm-inline-block"> Refresh Data</span>
                                 </span>
                             </button>
                         </div>
@@ -32,22 +25,26 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama</th>
-                                <th>NIK</th>
-                                <th>No.HP</th>
-                                <th>Alamat</th>
-                                <th>Action</th>
+                                <th>Invoice</th>
+                                <th>Kelompok</th>
+                                <th>Petani</th>
+                                <th>Jenis</th>
+                                <th>Jumlah Diajukan</th>
+                                <th>Jumlah Diterima</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
 
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama</th>
-                                <th>NIK</th>
-                                <th>No.HP</th>
-                                <th>Alamat</th>
-                                <th>Action</th>
+                                <th>Invoice</th>
+                                <th>Kelompok</th>
+                                <th>Petani</th>
+                                <th>Jenis</th>
+                                <th>Jumlah Diajukan</th>
+                                <th>Jumlah Diterima</th>
+                                <th>Status</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -55,6 +52,5 @@
             </div>
         </div>
     </div>
-    @include('admin.kelompok_tani.components.modal')
 @endsection
-@include('admin.kelompok_tani.script')
+@include('admin.pengajuan_petani.script')

@@ -16,6 +16,10 @@
                         name: 'nama'
                     },
                     {
+                        data: 'nik',
+                        name: 'nik'
+                    },
+                    {
                         data: 'no_hp',
                         name: 'no_hp'
                     },
@@ -43,6 +47,7 @@
                     success: function(response) {
                         $('#formCustomerId').val(response.id);
                         $('#Nama').val(response.nama);
+                        $('#NIK').val(response.nik);
                         $('#NoHp').val(response.no_hp);
                         $('#Alamat').val(response.alamat);
                         $('#customersModal').modal('show');
@@ -87,6 +92,7 @@
                         alert(response.message);
                         $('#createNama').val('');
                         $('#createNoHp').val('');
+                        $('#createNIK').val('');
                         $('#createAlamat').val('');
                         $('#datatable-customers').DataTable().ajax.reload();
                         $('#create').modal('hide');

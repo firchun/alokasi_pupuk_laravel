@@ -3,30 +3,26 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="userModalLabel">Update Anggota</h5>
+                <h5 class="modal-title" id="userModalLabel">User Form</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Form for Create and Edit -->
                 <form id="userForm">
                     <input type="hidden" id="formCustomerId" name="id">
-                    <input type="hidden" name="id_poktan" value="{{ $id_poktan }}">
                     <div class="mb-3">
-                        <label for="formCustomerName" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="Nama" name="nama" required>
+                        <label for="formCustomerName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="formCustomerName" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="formCustomerName" class="form-label">Nomor NIK</label>
-                        <input type="text" class="form-control" id="NIK" name="nik" required>
+                        <label for="formCustomerPhone" class="form-label">Phone</label>
+                        <input type="number" class="form-control" id="formCustomerPhone" name="phone" required>
                     </div>
                     <div class="mb-3">
-                        <label for="formCustomerName" class="form-label">No HP</label>
-                        <input type="text" class="form-control" id="NoHp" name="no_hp" required>
+                        <label for="formCustomerAddress" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="formCustomerAddress" name="address" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="formCustomerName" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="Alamat" name="alamat">
-                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -40,30 +36,25 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="userModalLabel">Tambah Anggota</h5>
+                <h5 class="modal-title" id="userModalLabel">User Form</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Form for Create and Edit -->
                 <form id="createUserForm">
-                    <input type="hidden" name="id_poktan" value="{{ $id_poktan }}">
                     <div class="mb-3">
-                        <label for="formCustomerName" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="createNama" name="nama" required>
+                        <label for="formCustomerName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="formCustomerName" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="formCustomerName" class="form-label">Nomor NIK</label>
-                        <input type="text" class="form-control" id="createNIK" name="nik" required>
+                        <label for="formCustomerPhone" class="form-label">Phone</label>
+                        <input type="number" class="form-control" id="formCustomerPhone" name="phone" required>
                     </div>
                     <div class="mb-3">
-                        <label for="formCustomerName" class="form-label">No HP</label>
-                        <input type="text" class="form-control" id="createNoHp" name="no_hp" value="+62"
-                            required>
+                        <label for="formCustomerAddress" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="formCustomerAddress" name="address" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="formCustomerName" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="createAlamat" name="alamat" value="-">
-                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">

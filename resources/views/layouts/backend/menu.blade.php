@@ -31,6 +31,21 @@
                     <div data-i18n="Analytics">Pengajuan Stok</div>
                 </a>
             </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Transaksi</span>
+            </li>
+            <li class="menu-item {{ request()->is('pengajuan-pupuk') ? 'active' : '' }}">
+                <a href="{{ url('/pengajuan-pupuk') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-layer"></i>
+                    <div data-i18n="Analytics">Data Pengajuan Petani</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('pengambilan') ? 'active' : '' }}">
+                <a href="{{ url('/pengambilan') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-layer"></i>
+                    <div data-i18n="Analytics">Update Pengambilan</div>
+                </a>
+            </li>
         @endif
         @if (Auth::user()->role == 'PPL')
             <li class="menu-header small text-uppercase">
@@ -53,6 +68,12 @@
             </li>
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">DISTRIBUTOR</span>
+            </li>
+            <li class="menu-item {{ request()->is('stok') ? 'active' : '' }}">
+                <a href="{{ url('/stok') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-layer"></i>
+                    <div data-i18n="Analytics">Pengajuan Stok</div>
+                </a>
             </li>
             <li class="menu-item {{ request()->is('distributor') ? 'active' : '' }}">
                 <a href="{{ url('/distributor') }}" class="menu-link">

@@ -69,15 +69,20 @@
         <div class="content">
             <div class="container">
                 <div class="row g-0 justify-content-center">
+                    @php
+                        $jenisPupukList = App\Models\JenisPupuk::all();
+                    @endphp
+
                     @foreach (App\Models\User::where('role', 'Distributor')->get() as $item)
                         <div class="col-lg-3 col-md-6">
-                            <div class="service-item" style="border-right:">
+                            <div class="service-item">
                                 @if (App\Models\StokPupuk::getStok($item->id) > 0)
-                                    <span class="number  text-success fw-bold">TERSEDIA</span>
+                                    <span class="number text-success fw-bold">TERSEDIA</span>
                                 @else
                                     <span class="number text-danger fw-bold">HABIS</span>
                                 @endif
                                 <div class="service-item-icon">
+                                    <!-- Icon SVG -->
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" x="0" y="0"
                                         viewBox="0 0 509.435 509.435" style="enable-background: new 0 0 512 512"
@@ -96,18 +101,19 @@
                                 </div>
                                 <div class="service-item-content">
                                     <h3 class="service-heading">Distributor : {{ $item->name }}</h3>
-                                    Alamat :
+                                    Alamat : {{ $item->alamat }}
                                     <hr>
-                                    <b>Stok Pupuk </b><br>
-                                    @foreach (App\Models\JenisPupuk::all() as $jenisItem)
+                                    <b>Stok Pupuk</b><br>
+                                    @foreach ($jenisPupukList as $jenisItem)
                                         <p style="margin: 0;">
-                                            <b>Pupuk {{ $jenisItem->jenis_pupuk }} : </b>
+                                            <b>Pupuk {{ $jenisItem->jenis_pupuk }}:</b>
                                             <strong style="font-size: 20px;"
-                                                class="text-success">{{ App\Models\StokPupuk::getStok([$item->id, $jenisItem->id]) }}</strong>
+                                                class="{{ App\Models\StokPupuk::getStok($item->id, $jenisItem->id) > 0 ? 'text-success' : 'text-danger' }}">
+                                                {{ App\Models\StokPupuk::getStok($item->id, $jenisItem->id) }}
+                                            </strong>
                                             Karung
                                         </p>
                                     @endforeach
-
                                 </div>
                             </div>
                         </div>

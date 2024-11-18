@@ -20,16 +20,25 @@ class StokPupuk extends Model
     {
         return $this->belongsTo(JenisPupuk::class, 'id_jenis_pupuk');
     }
-    protected function getStok($id_distributor, $jenis = null)
+    protected static function getStok($id_distributor, $id_jenis = null)
     {
-        $stok = Self::where('id_distributor', $id_distributor)
-            ->where('diterima', 1)
-            ->where('id_jenis_pupuk', $jenis)
-            ->sum('jumlah_diterima') ?? 0;
+        $stokQuery = Self::where('id_distributor', $id_distributor)
+            ->where('diterima', 1);
 
-        $pengajuan = PengajuanPupukPetani::where('diterima', 1)
-            ->where('id_jenis_pupuk', $jenis)
-            ->sum('jumlah_diterima') ?? 0;
+        if ($id_jenis) {
+            $stokQuery->where('id_jenis_pupuk', $id_jenis);
+        }
+
+        $stok = $stokQuery->sum('jumlah_diterima');
+
+        $pengajuanQuery = PengajuanPupukPetani::where('diterima', 1);
+
+        if ($id_jenis) {
+            $pengajuanQuery->where('id_jenis_pupuk', $id_jenis);
+        }
+
+        // Jika pengurangan pengajuan hanya untuk distributor tertentu
+        $pengajuan = $pengajuanQuery->sum('jumlah_diterima');
 
         return $stok - $pengajuan ?? 0;
     }

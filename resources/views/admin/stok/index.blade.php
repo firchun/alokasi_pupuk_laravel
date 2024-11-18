@@ -14,16 +14,22 @@
                             <button class="btn btn-secondary refresh btn-default" type="button">
                                 <span>
                                     <i class="bx bx-sync me-sm-1"> </i>
-                                    <span class="d-none d-sm-inline-block"></span>
+                                    <span class="d-none d-sm-inline-block">
+                                        @if (Auth::user()->role != 'Distributor')
+                                            Refresh Data
+                                        @endif
+                                    </span>
                                 </span>
                             </button>
-                            <button class="btn btn-secondary create-new btn-success" type="button" data-bs-toggle="modal"
-                                data-bs-target="#create">
-                                <span>
-                                    <i class="bx bx-plus me-sm-1"> </i>
-                                    <span class="d-none d-sm-inline-block">Pengajuan baru</span>
-                                </span>
-                            </button>
+                            @if (Auth::user()->role == 'Distributor')
+                                <button class="btn btn-secondary create-new btn-success" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#create">
+                                    <span>
+                                        <i class="bx bx-plus me-sm-1"> </i>
+                                        <span class="d-none d-sm-inline-block">Pengajuan baru</span>
+                                    </span>
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>
