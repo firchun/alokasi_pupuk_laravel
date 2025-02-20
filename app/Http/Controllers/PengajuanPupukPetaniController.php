@@ -47,4 +47,12 @@ class PengajuanPupukPetaniController extends Controller
 
             ->make(true);
     }
+    public function getPengajunPupukPetaniDataTable($id_anggota)
+    {
+        $customers = PengajuanPupukPetani::with(['poktan', 'anggota', 'jenis_pupuk'])->where('id_anggota', $id_anggota)->orderByDesc('id');
+
+        return DataTables::of($customers)
+
+            ->make(true);
+    }
 }

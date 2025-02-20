@@ -57,6 +57,47 @@
                     }
                 });
             };
+            window.riwayatCustomer = function(id) {
+                $('#riwayatModal').modal('show');
+                $('#datatable-pengajuan-petani').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    responsive: false,
+                    ajax: '{{ url('pengajuan-pupuk-petani-datatable') }}',
+                    columns: [{
+                            data: 'id',
+                            name: 'id'
+                        },
+
+                        {
+                            data: 'invoice',
+                            name: 'invoice'
+                        },
+                        {
+                            data: 'poktan.name',
+                            name: 'poktan.name'
+                        },
+                        {
+                            data: 'anggota.nama',
+                            name: 'anggota.nama'
+                        },
+                        {
+                            data: 'jenis_pupuk.jenis_pupuk',
+                            name: 'jenis_pupuk.jenis_pupuk'
+                        },
+
+                        {
+                            data: 'jumlah_pengajuan',
+                            name: 'jumlah_pengajuan'
+                        },
+                        {
+                            data: 'jumlah_diterima',
+                            name: 'jumlah_diterima'
+                        },
+
+                    ]
+                });
+            };
             $('#saveCustomerBtn').click(function() {
                 var formData = $('#userForm').serialize();
 

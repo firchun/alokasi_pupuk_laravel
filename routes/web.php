@@ -83,6 +83,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/pengajuan-pupuk', [PengajuanPupukPetaniController::class, 'index'])->name('pengajuan-pupuk');
     Route::post('/pengajuan-pupuk/store', [PengajuanPupukPetaniController::class, 'store'])->name('pengajuan-pupuk.store');
     Route::get('/pengajuan-pupuk-datatable', [PengajuanPupukPetaniController::class, 'getPengajunPupukDataTable']);
+    Route::get('/pengajuan-pupuk-petani-datatable/{id_anggota}', [PengajuanPupukPetaniController::class, 'getPengajunPupukPetaniDataTable']);
     //jenis pupuk managemen
     Route::get('/jenis-pupuk', [JenisPupukController::class, 'index'])->name('jenis-pupuk');
     Route::post('/jenis-pupuk/store',  [JenisPupukController::class, 'store'])->name('jenis-pupuk.store');
