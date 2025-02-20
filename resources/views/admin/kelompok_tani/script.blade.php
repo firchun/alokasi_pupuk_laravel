@@ -59,6 +59,9 @@
             };
             window.riwayatCustomer = function(id) {
                 $('#riwayatModal').modal('show');
+                if ($.fn.dataTable.isDataTable('#datatable-pengajuan-petani')) {
+                    $('#datatable-pengajuan-petani').DataTable().destroy();
+                }
                 $('#datatable-pengajuan-petani').DataTable({
                     processing: true,
                     serverSide: true,
