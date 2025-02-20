@@ -63,7 +63,7 @@
                     processing: true,
                     serverSide: true,
                     responsive: false,
-                    ajax: '{{ url('pengajuan-pupuk-petani-datatable') }}',
+                    ajax: '{{ url('pengajuan-pupuk-petani-datatable') }}/' + id,
                     columns: [{
                             data: 'id',
                             name: 'id'
