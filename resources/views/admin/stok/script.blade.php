@@ -32,11 +32,11 @@
                         name: 'diterima',
                         render: function(data, type, row) {
                             if (data === 1) {
-                                return 'Diterima';
+                                return 'Pengajuan Diterima';
                             } else if (data === 0) {
-                                return 'Pengajuan';
+                                return 'Dalam Pengajuan';
                             } else if (data === 2) {
-                                return 'Ditolak';
+                                return 'Pengajuan Ditolak';
                             } else {
                                 return 'Tidak Diketahui';
                             }

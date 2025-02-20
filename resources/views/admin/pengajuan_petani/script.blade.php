@@ -40,7 +40,7 @@
                         data: 'diterima',
                         name: 'diterima',
                         render: function(data, type, row) {
-                            return data === 1 ? 'Sudah' : 'Belum';
+                            return data === 1 ? 'Sudah Diterima' : 'Belum Diterima';
                         }
                     }
                 ]
