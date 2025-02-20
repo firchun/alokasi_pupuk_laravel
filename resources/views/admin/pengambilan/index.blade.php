@@ -18,17 +18,20 @@
         </div>
     </div>
 @endsection
+
 @push('js')
     <script>
         document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Mencegah form submit secara langsung
+            e.preventDefault();
 
-            const invoiceNumber = document.getElementById('invoice_number').value;
+            const invoiceNumber = document.getElementById('invoice_number').value.trim();
             const csrfToken = document.querySelector('input[name="_token"]').value;
-            if (!invoiceNumber.trim()) {
+
+            if (!invoiceNumber) {
                 alert('Nomor invoice tidak boleh kosong.');
                 return;
             }
+
             fetch('/search-invoice', {
                     method: 'POST',
                     headers: {
@@ -48,18 +51,19 @@
                         const diterimaStatus = data.data.diterima === 1 ?
                             '<span class="text-success">Diterima</span>' :
                             '<span class="text-danger">Belum Diterima</span>';
+
                         const formUpdate = data.data.diterima === 1 ?
-                            ` <p><strong>Total diterima :</strong> ${data.data.jumlah_diterima}</p>` : `
-                            <hr>
-                            <form id="updateForm">
-                                <p><strong>Konfirmasi Jumlah diambil:</strong></p>
-                                <input type="hidden" name="id" value="${data.data.id}">
-                                <div class="form-group">
-                                    <input type="number" name="jumlah_diterima" class="form-control" placeholder="Masukkan jumlah diterima" required>
-                                </div>
-                                <button type="button" class="btn btn-success mt-2" id="updateBtn">Update Pengambilan</button>
-                            </form>
-                        `;
+                            `<p><strong>Total diterima :</strong> ${data.data.jumlah_diterima}</p>` :
+                            `<hr>
+                        <form id="updateForm">
+                            <p><strong>Konfirmasi Jumlah diambil:</strong></p>
+                            <input type="hidden" name="id" value="${data.data.id}">
+                            <div class="form-group">
+                                <input type="number" id="jumlah_diterima" name="jumlah_diterima" class="form-control" placeholder="Masukkan jumlah diterima" required>
+                            </div>
+                            <button type="button" class="btn btn-success mt-2" id="updateBtn" data-max="${data.data.jumlah_pengajuan}">Update Pengambilan</button>
+                        </form>`;
+
                         resultDiv.innerHTML = `
                         <div class="card">
                             <div class="card-body">
@@ -69,14 +73,12 @@
                                 <p><strong>Total diajukan:</strong> ${data.data.jumlah_pengajuan}</p>
                                 <p><strong>Status Pengajuan:</strong> ${diterimaStatus}</p>${formUpdate}
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                     } else {
                         resultDiv.innerHTML = `
                         <div class="alert alert-danger">
                             <p>${data.message}</p>
-                        </div>
-                    `;
+                        </div>`;
                     }
                 })
                 .catch(error => {
@@ -84,14 +86,22 @@
                     document.getElementById('result').innerHTML = `
                     <div class="alert alert-danger">
                         <p>Terjadi kesalahan. Silakan coba lagi.</p>
-                    </div>
-                `;
+                    </div>`;
                 });
         });
 
         // Event delegation for dynamically created #updateBtn
         $(document).on('click', '#updateBtn', function() {
-            var formData = $('#updateForm').serialize();
+            const jumlahDiterimaInput = $('#jumlah_diterima');
+            const jumlahDiterima = parseInt(jumlahDiterimaInput.val(), 10);
+            const maxJumlah = parseInt($(this).data('max'), 10);
+
+            if (isNaN(jumlahDiterima) || jumlahDiterima < 0 || jumlahDiterima > maxJumlah) {
+                alert(`Jumlah diterima harus antara 0 dan ${maxJumlah}.`);
+                return;
+            }
+
+            const formData = $('#updateForm').serialize();
 
             $.ajax({
                 type: 'POST',
@@ -101,8 +111,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
-
-                    // Optionally, reload data or update UI
                     $('#result').html(
                         '<div class="alert alert-success">Update berhasil dilakukan.</div>');
                 },

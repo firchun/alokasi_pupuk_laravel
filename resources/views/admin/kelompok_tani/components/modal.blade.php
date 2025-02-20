@@ -75,40 +75,40 @@
 </div>
 <!-- Modal for History -->
 <div class="modal fade" id="riwayatModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="historyModalLabel">Riwayat Pengambilan Pupuk</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="datatable-pengajuan-petani" class="table table-hover table-bordered display">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Invoice</th>
-                            <th>Kelompok</th>
-                            <th>Petani</th>
-                            <th>Jenis</th>
-                            <th>Jumlah Diajukan</th>
-                            <th>Jumlah Diterima</th>
+                <div class="table-responsive">
+                    <table id="datatable-pengajuan-petani" class="table table-hover table-bordered display table-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Invoice</th>
+                                <th>Kelompok</th>
+                                <th>Petani</th>
+                                <th>Jenis</th>
+                                <th>Jumlah Diajukan</th>
+                                <th>Jumlah Diterima</th>
+                            </tr>
+                        </thead>
 
-                        </tr>
-                    </thead>
-
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Invoice</th>
-                            <th>Kelompok</th>
-                            <th>Petani</th>
-                            <th>Jenis</th>
-                            <th>Jumlah Diajukan</th>
-                            <th>Jumlah Diterima</th>
-
-                        </tr>
-                    </tfoot>
-                </table>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Invoice</th>
+                                <th>Kelompok</th>
+                                <th>Petani</th>
+                                <th>Jenis</th>
+                                <th>Jumlah Diajukan</th>
+                                <th>Jumlah Diterima</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -116,3 +116,11 @@
         </div>
     </div>
 </div>
+@push('css')
+    <style>
+        .modal-body {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+    </style>
+@endpush
