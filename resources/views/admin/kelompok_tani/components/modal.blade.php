@@ -75,7 +75,7 @@
 </div>
 <!-- Modal for History -->
 <div class="modal fade" id="riwayatModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="historyModalLabel">Riwayat Pengambilan Pupuk</h5>
@@ -88,8 +88,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Invoice</th>
-                                <th>Kelompok</th>
-                                <th>Petani</th>
+
                                 <th>Jenis</th>
                                 <th>Jumlah Diajukan</th>
                                 <th>Jumlah Diterima</th>
@@ -100,8 +99,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Invoice</th>
-                                <th>Kelompok</th>
-                                <th>Petani</th>
+
                                 <th>Jenis</th>
                                 <th>Jumlah Diajukan</th>
                                 <th>Jumlah Diterima</th>

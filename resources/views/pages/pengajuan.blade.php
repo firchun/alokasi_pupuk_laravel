@@ -66,8 +66,11 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="">Jumlah Pupuk</label>
-                                            <input type="number" name="jumlah_pengajuan" min="1" value="1"
-                                                class="form-control">
+                                            <div class="input-group">
+                                                <input type="number" name="jumlah_pengajuan" min="1" value="1"
+                                                    class="form-control">
+                                                <span class="input-group-text">Kg</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

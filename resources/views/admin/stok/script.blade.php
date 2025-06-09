@@ -8,7 +8,12 @@
                 ajax: '{{ url('stok-datatable') }}',
                 columns: [{
                         data: 'id',
-                        name: 'id'
+                        name: 'id',
+                        render: function(data, type, row, meta) {
+                            return meta.row + 1;
+                        },
+                        orderable: false,
+                        searchable: false
                     },
                     @if (Auth::user()->role != 'Distributor')
                         {

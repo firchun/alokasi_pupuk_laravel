@@ -34,8 +34,7 @@
                                 <th>ID</th>
                                 <th>Nama</th>
                                 <th>NIK</th>
-                                <th>No.HP</th>
-                                <th>Alamat</th>
+                                <th>Kelompok</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -45,8 +44,7 @@
                                 <th>ID</th>
                                 <th>Nama</th>
                                 <th>NIK</th>
-                                <th>No.HP</th>
-                                <th>Alamat</th>
+                                <th>Kelompok</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

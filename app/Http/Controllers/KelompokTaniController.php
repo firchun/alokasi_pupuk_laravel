@@ -20,7 +20,7 @@ class KelompokTaniController extends Controller
     }
     public function getKelompokTaniDataTable($id_poktan)
     {
-        $customers = KelompokTani::where('id_poktan', $id_poktan)->orderByDesc('id');
+        $customers = KelompokTani::with(['poktan'])->where('id_poktan', $id_poktan)->orderByDesc('id');
 
         return DataTables::of($customers)
             ->addColumn('action', function ($customer) {
@@ -39,12 +39,14 @@ class KelompokTaniController extends Controller
             'no_hp' => 'required|string|max:20',
             'nama' => 'required|string',
             'alamat' => 'required|string',
+            'nik' => 'required|string|unique:kelompok_tani,nik,' . $request->input('id', '0'),
         ]);
 
         $customerData = [
             'id_poktan' => $request->input('id_poktan'),
             'nama' => $request->input('nama'),
             'no_hp' => $request->input('no_hp'),
+            'nik' => $request->input('nik'),
             'alamat' => $request->input('alamat'),
         ];
 

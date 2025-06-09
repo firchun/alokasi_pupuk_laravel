@@ -8,7 +8,12 @@
                 ajax: '{{ url('pengajuan-pupuk-datatable') }}',
                 columns: [{
                         data: 'id',
-                        name: 'id'
+                        name: 'id',
+                        render: function(data, type, row, meta) {
+                            return meta.row + 1;
+                        },
+                        orderable: false,
+                        searchable: false
                     },
 
                     {
@@ -21,7 +26,10 @@
                     },
                     {
                         data: 'anggota.nama',
-                        name: 'anggota.nama'
+                        name: 'anggota.nama',
+                        render: function(data, type, row, meta) {
+                            return `${data}<br><small class="text-mutted">${row.anggota.nik}</small>`;
+                        }
                     },
                     {
                         data: 'jenis_pupuk.jenis_pupuk',
@@ -30,11 +38,17 @@
 
                     {
                         data: 'jumlah_pengajuan',
-                        name: 'jumlah_pengajuan'
+                        name: 'jumlah_pengajuan',
+                        render: function(data, type, row, meta) {
+                            return data + ' Kg';
+                        }
                     },
                     {
                         data: 'jumlah_diterima',
-                        name: 'jumlah_diterima'
+                        name: 'jumlah_diterima',
+                        render: function(data, type, row, meta) {
+                            return data + ' Kg';
+                        }
                     },
                     {
                         data: 'diterima',
