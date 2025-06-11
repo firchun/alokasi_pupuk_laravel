@@ -1,3 +1,66 @@
+@if (Auth::user()->role == 'Gapoktan')
+    <!-- Modal Formulir Pengajuan Pupuk -->
+    <div class="modal fade" id="modalAjukanPupuk" tabindex="-1" aria-labelledby="modalAjukanPupukLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-success">
+                <form action="{{ url('/ajukan') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAjukanPupukLabel"><b>Formulir Pengajuan Pupuk</b></h5>
+                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="id_poktan">Pilih Kelompok Tani</label>
+                            <select name="id_poktan" id="id_poktan" class="form-select">
+                                <option value=""> Pilih Kelompok</option>
+                                @foreach (App\Models\User::where('role', 'Poktan')->get() as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_anggota">Cari Nama Anda</label>
+                            <select name="id_anggota" id="id_anggota" class="form-select">
+                                <option value="">Pilih Nama Anggota</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="id_jenis_pupuk">Pilih Jenis Pupuk</label>
+                                    <select name="id_jenis_pupuk" class="form-control">
+                                        @foreach (App\Models\JenisPupuk::all() as $item)
+                                            <option value="{{ $item->id }}">{{ $item->jenis_pupuk }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="jumlah_pengajuan">Jumlah Pupuk</label>
+                                    <div class="input-group">
+                                        <input type="number" name="jumlah_pengajuan" min="1" value="1"
+                                            class="form-control">
+                                        <span class="input-group-text">Kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-success btn-lg" id="ajukanBtn">Ajukan Pupuk</button>
+                        <button type="reset" class="btn btn-secondary btn-lg" id="resetBtn">Reset Formulir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endif
 <!-- Modal for Create and Edit -->
 <div class="modal fade" id="customersModal" tabindex="-1" aria-labelledby="customersModalLabel" aria-hidden="true">
     <div class="modal-dialog">

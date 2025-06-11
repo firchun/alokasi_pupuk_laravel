@@ -34,7 +34,7 @@ class PageController extends Controller
         $pengajuan->save();
 
         // Mengarahkan kembali ke halaman dengan pesan sukses
-        return redirect('/pengajuan_pupuk')->with('success', 'Pengajuan berhasil dibuat dengan Invoice: ' . $invoice);
+        return back()->with('success', 'Pengajuan berhasil dibuat dengan Invoice: ' . $invoice);
     }
 
 

@@ -29,15 +29,29 @@ class PengajuanPupukPetaniController extends Controller
         ]);
 
         $customer = PengajuanPupukPetani::find($request->input('id'));
+
+        // Cek apakah data ditemukan
+        if (!$customer) {
+            return response()->json([
+                'message' => 'Data pengajuan tidak ditemukan.'
+            ], 404);
+        }
+
         $customerData = [
             'jumlah_diterima' => $request->input('jumlah_diterima'),
             'diterima' => 1,
-
         ];
-        $customer->update($customerData);
-        $message = 'anggota updated successfully';
 
-        return response()->json(['message' => $message]);
+        // Cek apakah proses update berhasil
+        if (!$customer->update($customerData)) {
+            return response()->json([
+                'message' => 'Gagal memperbarui data pengajuan.'
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Anggota berhasil diperbarui.'
+        ]);
     }
     public function getPengajunPupukDataTable()
     {
@@ -54,5 +68,21 @@ class PengajuanPupukPetaniController extends Controller
         return DataTables::of($customers)
 
             ->make(true);
+    }
+    public function destroy($id)
+    {
+        $data = PengajuanPupukPetani::find($id);
+
+        if (!$data) {
+            return response()->json(['message' => 'Data tidak ditemukan'], 404);
+        }
+
+        if ($data->diterima == 1) {
+            return response()->json(['message' => 'Data sudah diterima dan tidak bisa dihapus'], 403);
+        }
+
+        $data->delete();
+
+        return response()->json(['message' => 'Data berhasil dihapus']);
     }
 }

@@ -9,9 +9,9 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ url('/') }}"class="{{ Request::is('/') ? 'active fw-bold' : '' }}">Home</a></li>
-                <li><a href="{{ url('/pengajuan_pupuk') }}"
+                {{-- <li><a href="{{ url('/pengajuan_pupuk') }}"
                         class="{{ Request::is('pengajuan_pupuk') ? 'active  fw-bold' : '' }}">Pengajuan
-                        Pupuk</a></li>
+                        Pupuk</a></li> --}}
                 <li><a href="{{ url('/invoice') }}" class="{{ Request::is('invoice') ? 'active fw-bold' : '' }}">Cek
                         Invoice</a></li>
                 @guest

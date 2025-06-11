@@ -11,6 +11,15 @@
                     </div>
                     <div class="dt-action-buttons text-end pt-3 pt-md-0">
                         <div class=" btn-group " role="group">
+                            @if (Auth::user()->role == 'Gapoktan')
+                                <button class="btn btn-success" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#modalAjukanPupuk">
+                                    <span>
+                                        <i class="bx bx-plus me-sm-1"></i>
+                                        <span class="d-none d-sm-inline-block">Ajukan Pupuk</span>
+                                    </span>
+                                </button>
+                            @endif
                             <button class="btn btn-secondary refresh btn-default" type="button">
                                 <span>
                                     <i class="bx bx-sync me-sm-1"> </i>
@@ -32,6 +41,9 @@
                                 <th>Jumlah Diajukan</th>
                                 <th>Jumlah Diterima</th>
                                 <th>Status</th>
+                                @if (Auth::user()->role == 'Gapoktan')
+                                    <th>Action</th>
+                                @endif
                             </tr>
                         </thead>
 
@@ -45,6 +57,9 @@
                                 <th>Jumlah Diajukan</th>
                                 <th>Jumlah Diterima</th>
                                 <th>Status</th>
+                                @if (Auth::user()->role == 'Gapoktan')
+                                    <th>Action</th>
+                                @endif
                             </tr>
                         </tfoot>
                     </table>
@@ -52,5 +67,6 @@
             </div>
         </div>
     </div>
+    @include('admin.pengajuan_petani.components.modal')
 @endsection
 @include('admin.pengajuan_petani.script')

@@ -95,6 +95,12 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Kelompok Tani</span>
             </li>
+            <li class="menu-item {{ request()->is('pengajuan-pupuk') ? 'active' : '' }}">
+                <a href="{{ url('/pengajuan-pupuk') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-layer"></i>
+                    <div data-i18n="Analytics">Data Pengajuan</div>
+                </a>
+            </li>
             <li class="menu-item @if (request()->is('poktan') || request()->is('kelompok-tani*')) active @endif">
                 <a href="{{ url('/poktan') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user"></i>

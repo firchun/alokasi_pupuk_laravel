@@ -50,10 +50,9 @@ Route::post('/search-invoice', function (Request $request) {
         ], 404);
     }
 });
-Route::get('/pengajuan_pupuk', function () {
-    return view('pages.pengajuan');
-});
-Route::post('/ajukan', [PageController::class, 'ajukanPupuk'])->name('ajukan');
+// Route::get('/pengajuan_pupuk', function () {
+//     return view('pages.pengajuan');
+// });
 //api
 Route::get('/get-kelompok/{id}', [KelompokTaniController::class, 'getKelompok'])->name('get-kelompok');
 
@@ -62,6 +61,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //pengambilan
     Route::get('/pengambilan', [PengajuanPupukPetaniController::class, 'pengambilan'])->name('pengambilan');
+    // pengajuan
+    Route::post('/ajukan', [PageController::class, 'ajukanPupuk'])->name('ajukan');
     //akun managemen
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -70,6 +71,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/kelompok-tani/store',  [KelompokTaniController::class, 'store'])->name('kelompok-tani.store');
     Route::get('/kelompok-tani/edit/{id}',  [KelompokTaniController::class, 'edit'])->name('kelompok-tani.edit');
     Route::get('/kelompok-tani/edit/{id}',  [KelompokTaniController::class, 'edit'])->name('kelompok-tani.edit');
+    Route::delete('/kelompok-tani/delete/{id}',  [KelompokTaniController::class, 'destroy'])->name('kelompok-tani.delete');
     Route::get('/kelompok-tani-datatable/{id_poktan}',  [KelompokTaniController::class, 'getKelompokTaniDataTable']);
     //stok managemen
     Route::get('/stok', [StokPupukController::class, 'index'])->name('stok');
@@ -84,6 +86,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/pengajuan-pupuk/store', [PengajuanPupukPetaniController::class, 'store'])->name('pengajuan-pupuk.store');
     Route::get('/pengajuan-pupuk-datatable', [PengajuanPupukPetaniController::class, 'getPengajunPupukDataTable']);
     Route::get('/pengajuan-pupuk-petani-datatable/{id_anggota}', [PengajuanPupukPetaniController::class, 'getPengajunPupukPetaniDataTable']);
+    Route::delete('/pengajuan/{id}', [PengajuanPupukPetaniController::class, 'destroy']);
     //jenis pupuk managemen
     Route::get('/jenis-pupuk', [JenisPupukController::class, 'index'])->name('jenis-pupuk');
     Route::post('/jenis-pupuk/store',  [JenisPupukController::class, 'store'])->name('jenis-pupuk.store');
