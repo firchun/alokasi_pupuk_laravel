@@ -106,7 +106,7 @@
                             const month = String(date.getMonth() + 1).padStart(2,
                                 '0');
                             const year = date.getFullYear();
-                            return data === 1 ?
+                            return data == 1 ?
                                 `<span class="badge bg-label-primary">Sudah Diterima</span><br><small>${day}/${month}/${year}</small>` :
                                 '<span class="badge bg-label-warning">Belum Diterima</span>';
                         }
