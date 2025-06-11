@@ -48,11 +48,11 @@
                     resultDiv.innerHTML = '';
 
                     if (data.status === 'success') {
-                        const diterimaStatus = data.data.diterima === 1 ?
+                        const diterimaStatus = data.data.diterima == 1 ?
                             '<span class="text-success">Diterima</span>' :
                             '<span class="text-danger">Belum Diterima</span>';
 
-                        const formUpdate = data.data.diterima === 1 ?
+                        const formUpdate = data.data.diterima == 1 ?
                             `<p><strong>Total diterima :</strong> ${data.data.jumlah_diterima}</p>` :
                             `<hr>
                         <form id="updateForm">
