@@ -98,8 +98,8 @@
                         }
                     },
                     {
-                        data: 'diambil',
-                        name: 'diambil',
+                        data: 'diterima',
+                        name: 'diterima',
                         render: function(data, type, row) {
                             const date = new Date(row.updated_at);
                             const day = String(date.getDate()).padStart(2, '0');
