@@ -53,7 +53,7 @@
                         <h5>Invoice Ditemukan</h5><hr>
                         <p><strong>Invoice:</strong> ${data.data.invoice}</p>
                         <p><strong>Nama Petani:</strong> ${data.data.anggota.nama}</p>
-                        <p><strong>Total diajukan :</strong> ${data.data.jumlah_pengajuan}</p>
+                        <p><strong>Total diajukan :</strong> ${data.data.jumlah_pengajuan} Kg</p>
                         <p><strong>Status Pengajuan :</strong> ${diterimaStatus}</p>
                     </div>
                     `;
