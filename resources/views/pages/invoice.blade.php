@@ -45,7 +45,7 @@
                     resultDiv.innerHTML = '';
 
                     if (data.status === 'success') {
-                        const diterimaStatus = data.data.diterima === 1 ?
+                        const diterimaStatus = data.data.diterima == 1 ?
                             '<span class="text-success">Diterima</span>' :
                             '<span class="text-danger">Belum Diterima</span>';
                         resultDiv.innerHTML = `
