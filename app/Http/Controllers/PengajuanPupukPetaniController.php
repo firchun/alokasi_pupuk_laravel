@@ -40,6 +40,7 @@ class PengajuanPupukPetaniController extends Controller
         $customerData = [
             'jumlah_diterima' => $request->input('jumlah_diterima'),
             'diterima' => 1,
+            'diambil' => 1,
         ];
 
         // Cek apakah proses update berhasil

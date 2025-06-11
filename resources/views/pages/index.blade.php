@@ -7,7 +7,7 @@
                 <img src="{{ asset('frontend_theme') }}/assets/img/hero_1.jpg" alt="">
                 <div class="carousel-container">
                     <h2>{{ env('APP_NAME') }}</h2>
-                    <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a>
+                    {{-- <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a> --}}
 
                 </div>
             </div><!-- End Carousel Item -->
@@ -16,7 +16,7 @@
                 <img src="{{ asset('frontend_theme') }}/assets/img/hero_2.jpg" alt="">
                 <div class="carousel-container">
                     <h2>{{ env('APP_NAME') }}</h2>
-                    <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a>
+                    {{-- <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a> --}}
                 </div>
             </div><!-- End Carousel Item -->
 
@@ -24,7 +24,7 @@
                 <img src="{{ asset('frontend_theme') }}/assets/img/hero_3.jpg" alt="">
                 <div class="carousel-container">
                     <h2>{{ env('APP_NAME') }}</h2>
-                    <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a>
+                    {{-- <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a> --}}
                 </div>
             </div><!-- End Carousel Item -->
 
@@ -32,7 +32,7 @@
                 <img src="{{ asset('frontend_theme') }}/assets/img/hero_4.jpg" alt="">
                 <div class="carousel-container">
                     <h2>{{ env('APP_NAME') }}</h2>
-                    <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a>
+                    {{-- <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a> --}}
                 </div>
             </div><!-- End Carousel Item -->
 
@@ -40,7 +40,7 @@
                 <img src="{{ asset('frontend_theme') }}/assets/img/hero_5.jpg" alt="">
                 <div class="carousel-container">
                     <h2>{{ env('APP_NAME') }}</h2>
-                    <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a>
+                    {{-- <a href="{{ url('pengajuan_pupuk') }}" class="btn btn-outline-light px-4">Ajukan Sekarang</a> --}}
                 </div>
             </div><!-- End Carousel Item -->
 
