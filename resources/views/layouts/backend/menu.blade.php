@@ -40,12 +40,12 @@
                     <div data-i18n="Analytics">Data Pengajuan Petani</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('pengambilan') ? 'active' : '' }}">
+            {{-- <li class="menu-item {{ request()->is('pengambilan') ? 'active' : '' }}">
                 <a href="{{ url('/pengambilan') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layer"></i>
                     <div data-i18n="Analytics">Update Pengambilan</div>
                 </a>
-            </li>
+            </li> --}}
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Laporan</span>
             </li>
