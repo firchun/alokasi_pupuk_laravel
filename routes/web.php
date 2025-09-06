@@ -87,6 +87,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     //pengajuan pupuk petani managemen
     Route::get('/pengajuan-pupuk', [PengajuanPupukPetaniController::class, 'index'])->name('pengajuan-pupuk');
+    Route::get('/pengajuan-pupuk/detail/{id}', [PengajuanPupukPetaniController::class, 'detail'])->name('pengajuan-pupuk.detail');
     Route::post('/pengajuan-pupuk/store', [PengajuanPupukPetaniController::class, 'store'])->name('pengajuan-pupuk.store');
     Route::get('/pengajuan-pupuk-datatable', [PengajuanPupukPetaniController::class, 'getPengajunPupukDataTable']);
     Route::get('/pengajuan-pupuk-petani-datatable/{id_anggota}', [PengajuanPupukPetaniController::class, 'getPengajunPupukPetaniDataTable']);

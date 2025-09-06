@@ -16,6 +16,7 @@ class StokPupukController extends Controller
         ];
         return view('admin.stok.index', $data);
     }
+
     public function getStokDataTable()
     {
         $customers = StokPupuk::with(['jenis_pupuk', 'distributor'])->orderByDesc('id');
@@ -87,7 +88,7 @@ class StokPupukController extends Controller
         $data->jumlah_diterima = $request->input('jumlah_diterima');
         $data->save();
 
-        return response()->json(['message' => 'Berhasil menerima stok'], 404);
+        return response()->json(['message' => 'Berhasil menerima stok'], 200);
     }
     public function tolak(Request $request, $id)
     {

@@ -127,3 +127,24 @@
         </div>
     </div>
 </div>
+<!-- Modal Detail Pengajuan -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">Detail Pengajuan Pupuk</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body" id="result">
+                <!-- Detail dari AJAX akan masuk di sini -->
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+
+        </div>
+    </div>
+</div>

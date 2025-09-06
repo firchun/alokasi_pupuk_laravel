@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="card-datatable table-responsive">
-                    <table id="datatable-customers" class="table table-hover table-bordered display">
+                    <table id="datatable-customers" class="table table-sm table-hover table-bordered display">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -41,9 +41,7 @@
                                 <th>Jumlah Diajukan</th>
                                 <th>Jumlah Diterima</th>
                                 <th>Status</th>
-                                @if (Auth::user()->role == 'Gapoktan')
-                                    <th>Action</th>
-                                @endif
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -57,9 +55,7 @@
                                 <th>Jumlah Diajukan</th>
                                 <th>Jumlah Diterima</th>
                                 <th>Status</th>
-                                @if (Auth::user()->role == 'Gapoktan')
-                                    <th>Action</th>
-                                @endif
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>

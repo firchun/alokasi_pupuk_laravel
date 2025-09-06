@@ -32,6 +32,17 @@
                 return;
             }
 
+            function formatTanggal(dateStr) {
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    // hour: '2-digit',
+                    // minute: '2-digit'
+                };
+                return new Date(dateStr).toLocaleDateString('id-ID', options);
+            }
+
             fetch('/search-invoice', {
                     method: 'POST',
                     headers: {
@@ -71,7 +82,9 @@
                                 <p><strong>Invoice:</strong> ${data.data.invoice}</p>
                                 <p><strong>Nama Petani:</strong> ${data.data.anggota.nama}</p>
                                 <p><strong>Total diajukan:</strong> ${data.data.jumlah_pengajuan} Kg</p>
-                                <p><strong>Status Pengajuan:</strong> ${diterimaStatus}</p>${formUpdate}
+                                <p><strong>Tanggal Pengajuan:</strong> ${formatTanggal(data.data.created_at)}</p>
+                                <p><strong>Status Pengajuan:</strong> ${diterimaStatus}</p>
+                                ${formUpdate}
                             </div>
                         </div>`;
                     } else {

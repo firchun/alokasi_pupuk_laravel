@@ -108,6 +108,14 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
+                        // if (response.message) {
+                        //     alert(response.message);
+                        //     $('#jumlahDiterima').val('');
+                        //     $('#datatable-customers').DataTable().ajax.reload();
+                        //     $('#terima').modal('hide');
+                        // } else {
+                        //     alert('Ada masalah, tidak ada pesan sukses');
+                        // }
                         alert(response.message);
                         $('#jumlahDiterima').val('');
                         $('#datatable-customers').DataTable().ajax.reload();

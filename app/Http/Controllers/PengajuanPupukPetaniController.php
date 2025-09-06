@@ -22,6 +22,21 @@ class PengajuanPupukPetaniController extends Controller
         ];
         return view('admin.pengajuan_petani.index', $data);
     }
+    public function detail($id)
+    {
+        $data = PengajuanPupukPetani::with(['poktan', 'anggota', 'jenis_pupuk'])->find($id);
+
+        if (!$data) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Data tidak ditemukan'
+            ], 404);
+        }
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ]);
+    }
     public function store(Request $request)
     {
         $request->validate([
