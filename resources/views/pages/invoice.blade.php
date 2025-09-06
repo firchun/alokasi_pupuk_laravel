@@ -29,6 +29,17 @@
                 alert('Nomor invoice tidak boleh kosong.');
                 return;
             }
+
+            function formatTanggal(dateStr) {
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    // hour: '2-digit',
+                    // minute: '2-digit'
+                };
+                return new Date(dateStr).toLocaleDateString('id-ID', options);
+            }
             fetch('/search-invoice', {
                     method: 'POST',
                     headers: {
@@ -48,6 +59,11 @@
                         const diterimaStatus = data.data.diterima == 1 ?
                             '<span class="text-success">Diterima</span>' :
                             '<span class="text-danger">Belum Diterima</span>';
+                        const tanggalStatus = data.data.diterima == 1 && data.data.updated_at != null ?
+                            '<strong class="text-success">Tgl Diterima : </strong> : ' + formatTanggal(data.data
+                                .updated_at) :
+                            '<strong class="text-warning">Tgl Pengajuan : </span>' + formatTanggal(data.data
+                                .created_at);
                         resultDiv.innerHTML = `
                     <div class="alert alert-success">
                         <h5>Invoice Ditemukan</h5><hr>
@@ -55,6 +71,7 @@
                         <p><strong>Nama Petani:</strong> ${data.data.anggota.nama}</p>
                         <p><strong>Total diajukan :</strong> ${data.data.jumlah_pengajuan} Kg</p>
                         <p><strong>Status Pengajuan :</strong> ${diterimaStatus}</p>
+                        <p class="p-2 bg-light rounded">${tanggalStatus}</p>
                     </div>
                     `;
                     } else {

@@ -7,6 +7,7 @@ use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PengajuanPupukPetaniController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StokPupukController;
 use App\Http\Controllers\UserController;
 use App\Models\KelompokTani;
@@ -58,6 +59,8 @@ Route::get('/get-kelompok/{id}', [KelompokTaniController::class, 'getKelompok'])
 
 Auth::routes(['reset' => false]);
 Route::middleware(['auth:web'])->group(function () {
+    //laporan
+    Route::get('/laporan/pengajuan', [ReportController::class, 'index'])->name('laporan.pengajuan');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //pengambilan
     Route::get('/pengambilan', [PengajuanPupukPetaniController::class, 'pengambilan'])->name('pengambilan');
@@ -81,6 +84,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/stok/terima',  [StokPupukController::class, 'terima'])->name('stok.terima');
     Route::delete('/stok/delete/{id}',  [StokPupukController::class, 'destroy'])->name('stok.delete');
     Route::get('/stok-datatable', [StokPupukController::class, 'getStokDataTable']);
+
     //pengajuan pupuk petani managemen
     Route::get('/pengajuan-pupuk', [PengajuanPupukPetaniController::class, 'index'])->name('pengajuan-pupuk');
     Route::post('/pengajuan-pupuk/store', [PengajuanPupukPetaniController::class, 'store'])->name('pengajuan-pupuk.store');

@@ -46,6 +46,15 @@
                     <div data-i18n="Analytics">Update Pengambilan</div>
                 </a>
             </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Laporan</span>
+            </li>
+            <li class="menu-item {{ request()->is('laporan/pengajuan') ? 'active' : '' }}">
+                <a href="{{ url('/laporan/pengajuan') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-folder"></i>
+                    <div data-i18n="Analytics">Laporan Pengajuan</div>
+                </a>
+            </li>
         @endif
         @if (Auth::user()->role == 'PPL')
             <li class="menu-header small text-uppercase">
@@ -107,6 +116,15 @@
                     <div data-i18n="Analytics">Kelompok Tani</div>
                 </a>
             </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Laporan</span>
+            </li>
+            <li class="menu-item {{ request()->is('laporan/pengajuan') ? 'active' : '' }}">
+                <a href="{{ url('/laporan/pengajuan') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-folder"></i>
+                    <div data-i18n="Analytics">Laporan Pengajuan</div>
+                </a>
+            </li>
         @endif
         @if (Auth::user()->role == 'Poktan')
             <li class="menu-header small text-uppercase">
@@ -119,6 +137,7 @@
                 </a>
             </li>
         @endif
+
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Akun</span>
         </li>
