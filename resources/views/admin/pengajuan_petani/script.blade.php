@@ -47,6 +47,7 @@
         });
     </script>
     <script>
+        window.userRole = "{{ Auth::user()->role }}";
         $(function() {
             $('#datatable-customers').DataTable({
                 processing: true,
@@ -117,18 +118,34 @@
                         orderable: false,
                         searchable: false,
                         render: function(data, type, row, meta) {
-                            if (row.diterima == 0) {
-                                return `<button class="btn btn-success btn-sm m-1 btn-terima" data-id="${row.id}">
-                                                 Terima
+                            if (window.userRole === 'Distributor') {
+                                if (row.diterima == 0) {
+                                    return `
+                                            <button class="btn btn-success btn-sm m-1 btn-terima" data-id="${row.id}">
+                                                Terima
                                             </button>
                                             <button class="btn btn-danger btn-sm delete-btn m-1" data-id="${row.id}">
-                                                 Batalkan
+                                                Batalkan
                                             </button>
-                                            
-                                            `;
-                            } else {
-                                return '<span class="badge bg-label-primary"> Diterima</span>';
+                                        `;
+                                } else {
+                                    return '<span class="badge bg-label-primary">Diterima</span>';
+                                }
                             }
+
+                            if (window.userRole === 'Gapoktan') {
+                                if (row.diterima == 0) {
+                                    return `
+                                            <button class="btn btn-danger btn-sm delete-btn m-1" data-id="${row.id}">
+                                                Batalkan
+                                            </button>
+                                        `;
+                                } else {
+                                    return '<span class="badge bg-label-primary">Diterima</span>';
+                                }
+                            }
+
+                            return '-'; // default kalau bukan Distributor/Gapoktan
                         }
                     }
 
