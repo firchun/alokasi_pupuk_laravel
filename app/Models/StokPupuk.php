@@ -40,6 +40,6 @@ class StokPupuk extends Model
         // Jika pengurangan pengajuan hanya untuk distributor tertentu
         $pengajuan = $pengajuanQuery->sum('jumlah_diterima');
 
-        return $stok - $pengajuan ?? 0;
+        return max($stok - $pengajuan, 0);
     }
 }
