@@ -37,11 +37,11 @@
                         name: 'diterima',
                         render: function(data, type, row) {
                             let status = parseInt(data, 10);
-                            if (data === 1) {
+                            if (status === 1) {
                                 return 'Pengajuan Diterima';
-                            } else if (data === 0) {
+                            } else if (status === 0) {
                                 return 'Dalam Pengajuan';
-                            } else if (data === 2) {
+                            } else if (status === 2) {
                                 return 'Pengajuan Ditolak';
                             } else {
                                 return 'Tidak Diketahui';
