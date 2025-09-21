@@ -36,6 +36,7 @@
                         data: 'diterima',
                         name: 'diterima',
                         render: function(data, type, row) {
+                            let status = parseInt(data, 10);
                             if (data === 1) {
                                 return 'Pengajuan Diterima';
                             } else if (data === 0) {
