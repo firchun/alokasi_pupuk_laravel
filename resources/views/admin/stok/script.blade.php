@@ -38,13 +38,13 @@
                         render: function(data, type, row) {
                             let status = parseInt(data, 10);
                             if (status === 1) {
-                                return 'Pengajuan Diterima';
+                                return '<span class="badge bg-success">Pengajuan Diterima</span>';
                             } else if (status === 0) {
-                                return 'Dalam Pengajuan';
+                                return '<span class="badge bg-warning text-dark">Dalam Pengajuan</span>';
                             } else if (status === 2) {
-                                return 'Pengajuan Ditolak';
+                                return '<span class="badge bg-danger">Pengajuan Ditolak</span>';
                             } else {
-                                return 'Tidak Diketahui';
+                                return '<span class="badge bg-secondary">Tidak Diketahui</span>';
                             }
                         }
                     },
