@@ -27,23 +27,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil semua jenis pupuk
+        $selectedPoktan = $request->input('id_poktan'); // ambil dari dropdown
+
         $jenisPupuk = JenisPupuk::all();
 
         $grafikPengajuan = [];
 
         foreach ($jenisPupuk as $jenis) {
-            // Ambil semua kelompok tani yang ada pengajuan untuk jenis pupuk ini
-            $poktans = PengajuanPupukPetani::where('id_jenis_pupuk', $jenis->id)
-                ->with(['poktan']) // pastikan relasi poktan sudah didefinisikan di model
-                // ->select('id_poktan')
-                ->distinct()
-                ->get();
+            $query = PengajuanPupukPetani::where('id_jenis_pupuk', $jenis->id)
+                ->with('poktan');
+
+            if ($selectedPoktan) {
+                $query->where('id_poktan', $selectedPoktan);
+            }
+
+            $poktans = $query->distinct()->get();
 
             foreach ($poktans as $poktan) {
-                // Ambil total jumlah_diterima per bulan untuk setiap poktan dan jenis pupuk
                 $pengajuan = PengajuanPupukPetani::select(
                     DB::raw('MONTH(created_at) as bulan'),
                     DB::raw('SUM(jumlah_diterima) as total')
@@ -55,21 +57,24 @@ class HomeController extends Controller
                     ->pluck('total', 'bulan')
                     ->toArray();
 
-                // Pastikan semua bulan ada nilainya
                 $grafik = array_fill(1, 12, 0);
                 foreach ($pengajuan as $bulan => $total) {
                     $grafik[$bulan] = $total;
                 }
 
-                // Struktur data: [jenis_pupuk][nama_poktan] = array 12 bulan
                 $grafikPengajuan[$jenis->jenis_pupuk][$poktan->poktan->name] = array_values($grafik);
             }
         }
+
+        // Ambil semua poktan untuk dropdown
+        $allPoktan = User::where('role', 'Poktan')->get();
 
         return view('admin.dashboard', [
             'title' => 'Dashboard',
             'users' => User::count(),
             'grafikPengajuan' => $grafikPengajuan,
+            'allPoktan' => $allPoktan,
+            'selectedPoktan' => $selectedPoktan
         ]);
     }
 }

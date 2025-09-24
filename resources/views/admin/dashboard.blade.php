@@ -49,6 +49,18 @@
                 <h3 class="my-3 text-primary">GRAFIK PENGAJUAN PUPUK</h3>
                 <div class="card">
                     <div class="card-body">
+                        <form method="GET" action="{{ route('home') }}" class="mb-3" style="max-width: 400px;">
+                            <label for="id_poktan">Filter Poktan:</label>
+                            <select name="id_poktan" id="id_poktan" class="form-select" onchange="this.form.submit()">
+                                <option value="">-- Semua Poktan --</option>
+                                @foreach ($allPoktan as $poktan)
+                                    <option value="{{ $poktan->id }}"
+                                        {{ $selectedPoktan == $poktan->id ? 'selected' : '' }}>
+                                        {{ $poktan->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </form>
                         <canvas id="grafikPengajuan" height="90"></canvas>
                     </div>
                 </div>
@@ -88,11 +100,34 @@
                         </div>
                     </div>
                 @endforeach
+            @elseif (Auth::user()->role == 'Poktan')
+                @php
+                    $countAnggota = App\Models\KelompokTani::where('id_poktan', Auth::user()->id)->count();
+                @endphp
+                @include('admin.dashboard_component.card1', [
+                    'count' => $countAnggota,
+                    'title' => 'Anggota',
+                    'subtitle' => 'Total Anggota',
+                    'color' => 'primary',
+                    'icon' => 'user',
+                ])
             @endif
             <div class="col-12">
                 <h3 class="my-3 text-primary">GRAFIK PENGAJUAN PUPUK</h3>
                 <div class="card">
                     <div class="card-body">
+                        <form method="GET" action="{{ route('home') }}" class="mb-3" style="max-width: 400px;">
+                            <label for="id_poktan">Filter Poktan:</label>
+                            <select name="id_poktan" id="id_poktan" class="form-select" onchange="this.form.submit()">
+                                <option value="">-- Semua Poktan --</option>
+                                @foreach ($allPoktan as $poktan)
+                                    <option value="{{ $poktan->id }}"
+                                        {{ $selectedPoktan == $poktan->id ? 'selected' : '' }}>
+                                        {{ $poktan->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </form>
                         <canvas id="grafikPengajuan" height="90"></canvas>
                     </div>
                 </div>
